@@ -43,6 +43,22 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
+  int db_fd = -1;
+
+  if (newfile) {
+    db_fd = create_db_file(filepath);
+    if (db_fd ==  STATUS_ERROR) {
+      printf("unable to create db file\n");
+      return -1;
+    }
+  } else {
+    db_fd = open_db_file(filepath);
+    if (db_fd ==  STATUS_ERROR) {
+      printf("unable to open db file\n");
+      return -1;
+    }
+  }
+
   printf("Newfile: %d\n", newfile);
   printf("Filepath: %s\n", filepath);
 
