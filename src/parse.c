@@ -91,12 +91,12 @@ int output_file(int fd, struct dbheader_t *dbhdr) {
   return STATUS_SUCCESS;
 }
 
-void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
-}
-
-int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
-}
-
-int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
-}
+// void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
+// }
+//
+// int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
+// }
+//
+// int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
+// }
 
