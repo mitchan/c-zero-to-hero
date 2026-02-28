@@ -4,7 +4,7 @@ OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 
 run: clean default
 	./$(TARGET) -f ./mydb.db -n
-	./$(TARGET) -f ./mydb.db -n
+	./$(TARGET) -f ./mydb.db
 
 default: $(TARGET)
 

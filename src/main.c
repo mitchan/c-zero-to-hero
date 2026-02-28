@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   char *filepath = NULL;
   int c;
 
-  struct dbheader_t *header = NULL;
+  struct dbheader_t *db_header = NULL;
 
   int dbfd = -1;
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
       return -1;
     }
 
-    if (create_db_header(dbfd, &header) == STATUS_ERROR) {
+    if (create_db_header(&db_header) == STATUS_ERROR) {
       printf("Failed to create db header.\n");
       return -1;
     }
@@ -62,6 +62,11 @@ int main(int argc, char *argv[]) {
     dbfd = open_db_file(filepath);
     if (dbfd == STATUS_ERROR) {
       printf("unable to open db file.\n");
+      return -1;
+    }
+
+    if (validate_db_header(dbfd, &db_header) == -1) {
+      printf("Invalid db header.\n");
       return -1;
     }
   }
