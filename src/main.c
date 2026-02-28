@@ -71,8 +71,9 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  output_file(dbfd, db_header);
+
   close(dbfd);
 
-  printf("Newfile: %d\n", newfile);
-  printf("Filepath: %s\n", filepath);
+  printf("Success!\n");
 }

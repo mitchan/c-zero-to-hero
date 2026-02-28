@@ -72,26 +72,27 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
     return STATUS_ERROR;
   }
 
+  *headerOut = header;
+
   return STATUS_SUCCESS;
 }
 
-//
-// void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
-//
-// }
-//
-// int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
-//
-// }
-//
-// int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employeesOut) {
-//
-// }
-//
-// int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) {
-//
-// }	
-//
-//
-//
-//
+int output_file(int fd, struct dbheader_t *db_header) {
+  if (fd < 0) {
+    printf("Got a bad FD from the user.\n");
+    return STATUS_ERROR;
+  }
+
+  db_header->magic = htonl(db_header->magic);
+  db_header->filesize = htonl(db_header->filesize);
+  db_header->version = htons(db_header->version);
+  db_header->count = htons(db_header->count);
+
+  lseek(fd, 0, SEEK_SET);
+
+  if (write(fd, db_header, sizeof(struct dbheader_t)) == -1) {
+    return STATUS_ERROR;
+  } 
+
+  return STATUS_SUCCESS;
+}
