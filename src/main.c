@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  output_file(dbfd, db_header);
+  output_file(dbfd, db_header, NULL);
 
   close(dbfd);
 
